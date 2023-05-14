@@ -1,12 +1,33 @@
-import InputField from "./components/InputField";
+import React, { useState, useEffect } from 'react';
+import InputField from './components/InputField';
+import { Todo } from './model';
 
-const App : React.FC = () => {
+const App: React.FC = () => {
+	const [todo, setTodo] = useState<string>('');
+	const [todos, setTodos] = useState<Todo[]>([]);
+
+  const handleAdd = (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+		if (todo) {
+			setTodos([...todos, { id: Date.now(), todo: todo, isDone: false }]);
+			setTodo('');
+		}
+	};
+
+  useEffect(() => {
+    console.log(todos);
+  }, [todos]);
+
 	return (
-		<div className="app">
-      <h1>Todo TypeScript</h1>
-      <InputField />
+		<div className='app'>
+			<h1>Todo TypeScript</h1>
+			<InputField
+				todo={todo}
+				setTodo={setTodo}
+				handleAdd={handleAdd}
+			/>
 		</div>
 	);
-}
+};
 
 export default App;
