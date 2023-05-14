@@ -6,17 +6,13 @@ const App: React.FC = () => {
 	const [todo, setTodo] = useState<string>('');
 	const [todos, setTodos] = useState<Todo[]>([]);
 
-  const handleAdd = (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+	const handleAdd = (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault();
 		if (todo) {
 			setTodos([...todos, { id: Date.now(), todo: todo, isDone: false }]);
 			setTodo('');
 		}
 	};
-
-  useEffect(() => {
-    console.log(todos);
-  }, [todos]);
 
 	return (
 		<div className='app'>
