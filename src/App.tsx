@@ -4,7 +4,14 @@ import { Todo } from './model';
 
 const App: React.FC = () => {
 	const [todo, setTodo] = useState<string>('');
-	const [todos, setTodos] = useState<Todo[]>([]);
+	const [todos, setTodos] = useState<Todo[]>(() => {
+		const storedTodos = localStorage.getItem('todos');
+		return storedTodos ? JSON.parse(storedTodos) : [];
+	});
+
+	useEffect(() => {
+		localStorage.setItem('todos', JSON.stringify(todos));
+	}, [todos]);
 
 	const handleAdd = (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
@@ -14,6 +21,10 @@ const App: React.FC = () => {
 		}
 	};
 
+	useEffect(() => {
+		localStorage.setItem('todos', JSON.stringify(todos));
+	}, [todos]);
+
 	return (
 		<div className='app'>
 			<h1>Todo TypeScript</h1>
@@ -22,6 +33,9 @@ const App: React.FC = () => {
 				setTodo={setTodo}
 				handleAdd={handleAdd}
 			/>
+			{todos.map((todo) => (
+				<div key={todo.id}>{todo.todo}</div>
+			))}
 		</div>
 	);
 };
