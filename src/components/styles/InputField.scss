@@ -1,0 +1,62 @@
+.input {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 2.5rem;
+
+    &__box {
+        width: 40vw;
+        border: none;
+        outline: none;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem;
+        padding-right: 3rem;
+        background-color: var(--white);
+        transition: 0.25s all ease-in-out;
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+        font-size: 1.1rem;
+        font-weight: 400;
+        font-family: 'Poppins', sans-serif !important;
+        color: var(--black, 60%);
+
+        &:focus {
+            width: 70vw;
+            box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+
+            &::placeholder {
+                color: transparent;
+            }
+
+            & + .input__btn {
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            width: 60vw;
+
+            &:focus {
+                width: 80vw;
+            }
+        }
+    }
+
+    &__btn {
+        display: none;
+        position: absolute;
+        right: 0;
+        border: none;
+        background-color: transparent;
+        outline: none;
+        margin: 1rem;
+        cursor: pointer;
+        transition: 0.25s all ease-in-out;
+
+        &__icon {
+            font-size: 1.25rem;
+            color: var(--secondary, 60%);
+        }
+    }
+}
