@@ -9,6 +9,9 @@ const App: React.FC = () => {
 		return storedTodos ? JSON.parse(storedTodos) : [];
 	});
 
+	const todos_incomplete: Model[] = todos.filter((todo) => !todo.isDone);
+	const todos_complete: Model[] = todos.filter((todo) => todo.isDone);
+
 	useEffect(() => {
 		localStorage.setItem('todos', JSON.stringify(todos));
 	}, [todos]);
@@ -34,14 +37,28 @@ const App: React.FC = () => {
 				handleAdd={handleAdd}
 			/>
 			<div className='app__todolist'>
-				{todos.map((todo) => (
-					<Todo
-						key={todo.id}
-						todo={todo}
-						todos={todos}
-						setTodos={setTodos}
-					/>
-				))}
+				<div className='app__todolist__incomplete'>
+					<h1 className='app__todolist__text'>Incomplete Tasks</h1>
+					{todos_incomplete.map((todo) => (
+						<Todo
+							key={todo.id}
+							todo={todo}
+							todos={todos}
+							setTodos={setTodos}
+						/>
+					))}
+				</div>
+				<div className='app__todolist__complete'>
+					<h1 className='app__todolist__text'>Complete Tasks</h1>
+					{todos_complete.map((todo) => (
+						<Todo
+							key={todo.id}
+							todo={todo}
+							todos={todos}
+							setTodos={setTodos}
+						/>
+					))}
+				</div>
 			</div>
 		</div>
 	);
