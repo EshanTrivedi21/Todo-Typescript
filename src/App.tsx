@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import InputField from './components/InputField';
-import { Todo } from './model';
+import { Model } from './model';
+import { InputField, Todo } from './components';
 
 const App: React.FC = () => {
 	const [todo, setTodo] = useState<string>('');
-	const [todos, setTodos] = useState<Todo[]>(() => {
+	const [todos, setTodos] = useState<Model[]>(() => {
 		const storedTodos = localStorage.getItem('todos');
 		return storedTodos ? JSON.parse(storedTodos) : [];
 	});
@@ -33,9 +33,16 @@ const App: React.FC = () => {
 				setTodo={setTodo}
 				handleAdd={handleAdd}
 			/>
-			{todos.map((todo) => (
-				<div key={todo.id}>{todo.todo}</div>
-			))}
+			<div className='app__todolist'>
+				{todos.map((todo) => (
+					<Todo
+						key={todo.id}
+						todo={todo}
+						todos={todos}
+						setTodos={setTodos}
+					/>
+				))}
+			</div>
 		</div>
 	);
 };

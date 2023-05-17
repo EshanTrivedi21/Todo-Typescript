@@ -1,4 +1,4 @@
-export interface Todo {
+export interface Model {
     id: number;
     todo: string;
     isDone: boolean;

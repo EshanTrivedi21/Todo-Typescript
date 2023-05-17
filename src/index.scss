@@ -27,10 +27,19 @@ body {
 	justify-content: flex-start;
 	min-height: 100vh;
 	padding: 2.5rem;
+	
+	&__todolist {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		align-items: flex-start;
+		width: 100%;
+		margin: 2.5rem 0;
+
+	}
 }
 
 h1 {
 	font-size: 2rem;
 	font-weight: 500;
-	margin-bottom: 1rem;
 }
