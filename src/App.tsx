@@ -89,7 +89,7 @@ const App: React.FC = () => {
 					setTodo={setTodo}
 					handleAdd={handleAdd}
 				/>
-				<div className='app__todolist'>
+				<div className='app__todolist' style={todos.length !== 0 ? {display: "flex"} : {display: "none"}}>
 					<Droppable
 						droppableId='todos_incomp'
 						key='todos_incomp'
