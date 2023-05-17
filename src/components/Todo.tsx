@@ -83,13 +83,7 @@ const Todo: React.FC<Props> = ({ todo, todos, setTodos }) => {
 							}
 						}}
 					>
-						{edit ? (
-							<MdDone
-								color='#89664e'
-								size='1.25rem'
-								className='todo__icons__icon'
-							/>
-						) : (
+						{!edit && (
 							<MdEdit
 								color='#89664e'
 								size='1.1rem'
